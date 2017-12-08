@@ -1,6 +1,7 @@
 package com.robert.schoolMgr.dao;
 
 import com.robert.schoolMgr.bean.UserInfo;
+import com.robert.schoolMgr.controller.UserInfoController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,9 @@ public class UserInfoTest {
 
     private UserMapper userMapper;
 
+    @Autowired
+    private UserInfoController userInfoController;
+
     @Before
     public void startUp(){
         userMapper = (UserMapper) applicationContext.getBean("userMapper");
@@ -36,6 +40,12 @@ public class UserInfoTest {
         int id = 1;
         UserInfo userInfo = userMapper.selectUserInfo(id);
         logger.info("@@"+userInfo.getUsername());
+    }
+
+    @Test
+    public void testQueryUserInfo_Controller(){
+        int id =2;
+        userInfoController.selectUserInfo(id);
     }
 
 
